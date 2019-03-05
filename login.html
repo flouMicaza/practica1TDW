@@ -10,15 +10,14 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <!-- margin 0 auto es: margenes arriba y abajo 0 y auto centra el elemento respecto al padre que sería la pantalla completa-->
     <!-- form alumno tiene padding para que los elementos no choquien con la orilla-->
     <!-- box-shadow es para ponerle sombra a la box-->
     <style>
       .contenedor {
         width: 300px;
-        margin: 0 auto;
+        margin: 10% auto;
       }
       .contenedor .form-alumno {
         box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2),
@@ -51,8 +50,10 @@
               placeholder="Contraseña"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Alumno</button>
+          <!-- <button type="submit" class="btn btn-primary">Alumno</button> -->
         </form>
+        <a href="inicio_profesor.html"> <button class="btn btn-primary">Profesor</button></a>
+        <a href="inicio_alumno.html"> <button class="btn btn-primary">Alumno</button></a>
       </div>
     </div>
   </body>

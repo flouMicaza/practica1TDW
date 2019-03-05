@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Administrador de cuestiones</title>
-        <meta name="author" content="Florencia Miranda"/>
-        <meta charset="utf-8">
+  <head>
+    <title>Administrador de cuestiones</title>
+    <meta name="author" content="Florencia Miranda" />
+    <meta charset="utf-8" />
 
-        <!-- Importar bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Bienvenido profesor</h1>
+    <!-- Importar bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <style>
+    .delete-btn{
+      float: right;
+    }
+    .container {
+      margin: 5% auto
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="delete-btn">
+        <a href="login.html" class="btn btn-dark btn-lg">Salir</a>
+      </span>
+      <h1>Cuestiones maestro</h1>
+      
+      <div class="card">
+          <div class="card-body">   
+            <a href="pagina_cuestion.html">¿Que es el software?</a>
+            <span class="delete-btn"><a href="inicio_profesor.html" class="btn btn-danger">Eliminar</a></span>
+          </div>
         </div>
-    </body>
-
+        <div class="card">
+          <div class="card-body">
+            <a href="pagina_cuestion.html">¿Que es la recursividad?</a>       
+              <span class="delete-btn"><a href="inicio_profesor.html" class="btn btn-danger">Eliminar</a></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <a href="pagina_cuestion.html">¿Que es un lenguaje tipado?</a>
+                <span class="delete-btn"><a href="inicio_profesor.html" class="btn btn-danger">Eliminar</a></span>
+              </div>
+            </div>
+      </div>
+    </div>
+  </body>
 </html>
