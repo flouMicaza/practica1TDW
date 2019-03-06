@@ -14,17 +14,7 @@
     <!-- margin 0 auto es: margenes arriba y abajo 0 y auto centra el elemento respecto al padre que sería la pantalla completa-->
     <!-- form alumno tiene padding para que los elementos no choquien con la orilla-->
     <!-- box-shadow es para ponerle sombra a la box-->
-    <style>
-      .contenedor {
-        width: 300px;
-        margin: 10% auto;
-      }
-      .contenedor .form-alumno {
-        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2),
-          0 9px 26px 0 rgba(0, 0, 0, 0.19);
-        padding: 5%;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
   </head>
   <body>
     <div class="contenedor">
@@ -52,8 +42,8 @@
           </div>
           <!-- <button type="submit" class="btn btn-primary">Alumno</button> -->
         </form>
-        <a href="inicio_profesor.html"> <button class="btn btn-primary">Profesor</button></a>
-        <a href="inicio_alumno.html"> <button class="btn btn-primary">Alumno</button></a>
+        <a href="inicio_profesor.html" class="btn btn-primary">Profesor</a>
+        <a href="inicio_alumno.html" class="btn btn-primary">Alumno</a>
       </div>
     </div>
   </body>

@@ -1,0 +1,9 @@
+.contenedor {
+  width: 300px;
+  margin: 10% auto;
+}
+.contenedor .form-alumno {
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  padding: 5%;
+  background-color: #e3f2fd;
+}
