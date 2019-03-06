@@ -24,7 +24,7 @@
             <a class="nav-link" href="login.html">
               <!-- title hace que apareza un mensaje al pasar el mouse sobre la img-->
               <img
-                src="../icons/package/build/svg/sign-out.svg"
+                src="../icons/build/svg/sign-out.svg"
                 width="30"
                 height="30"
                 alt="Salir"
@@ -75,13 +75,18 @@
 
       <div class="card">
         <div class="card-body">
-          <form>
-            <input type="text" placeholder="Ingrese una cuestión" />
-            <span class="delete-btn">
-              <a href="inicio_profesor.html" class="btn btn-info"
-                >Nueva cuestión</a
-              >
-            </span>
+          <form action="./inicio_profesor.html" class="cuestion-input">
+            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+            <input
+              type="text"
+              class="form-control "
+              placeholder="Nueva cuestión"
+              required
+            />
+
+            <button class="btn btn-primary" type="submit">
+              Agregar
+            </button>
           </form>
         </div>
       </div>
