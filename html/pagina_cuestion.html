@@ -36,46 +36,49 @@
       </div>
     </nav>
 
-    <div class="contenedor">
-      <div class="jumbotron jumbotron-fluid">
-        <div>
-        <!-- el css de element1 tiene   inline-block que hace que se muestren cosas al lado de él -->
-        <div class="custom-control custom-switch" id="element1" >
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="customSwitch1"
-          />
+    
+    <div class="container">
+
+      <div class="d-flex justify-content-between" >
+        <div class="custom-control custom-switch" >
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" />
           <label class="custom-control-label" for="customSwitch1"></label>
-            Cuestión disponible</label
-          >
+          Cuestión disponible</label>
         </div>
-        <a
-          href="./inicio_profesor.html"
-          type="button"
-          class="close"
-          aria-label="Close"
-        >
+        <a href="./inicio_profesor.html" type="button" class="close" aria-label="Close">
           <span>&times;</span>
         </a>
-        </div>
-        <!-- form para cambiar el nombre-->
-        <form action="./inicio_profesor.html" class="cuestion-input">
-          <div class="form-group">
-            <label>Enunciado: </label>
-            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-            <input
-              type="text"
-              class="form-control"
-              value="¿Qué es el software?"
-              required
-            />
-          </div>
-          <button class="btn btn-primary " type="submit">
-            Cambiar nombre
-          </button>
-        </form>
       </div>
-    </div>
+
+      
+        <form action="./inicio_profesor.html" class="texto-input">
+          <div class="d-flex justify-content-center">
+            <label>Enunciado </label>
+            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+            <input type="text" class="form-control " placeholder="Nueva cuestión" required />
+          
+            <button class="btn btn-primary" type="submit">
+              Agregar
+            </button>
+          </div>
+        </form>
+
+
+        <form action="./inicio_profesor.html" class="texto-input">
+          <div class="d-flex justify-content-center">
+            <label>Nueva solución </label>
+            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+            <input type="text" class="form-control " placeholder="Nueva cuestión" required />
+        
+            <button class="btn btn-primary" type="submit">
+              Añadir solución
+            </button>
+          </div>
+        </form>
+      
+    </div>     
+  </div>
+   
   </body>
 </html>
+

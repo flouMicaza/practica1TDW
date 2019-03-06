@@ -1,17 +1,5 @@
-.contenedor {
-  width: 300px;
-  margin: 10% auto;
-}
 .navbar {
   background-color: #e3f2fd;
-}
-.jumbotron {
-  margin-top: 3%;
-  padding: 5%;
-}
-
-#element1 {
-  display: inline-block;
 }
 
 .cuestion-input input {
@@ -20,9 +8,11 @@
   margin-left: 2%;
 }
 
-.cuestion-input .btn {
-  float: left;
+.container {
+  background-color: #e3f2fd;
+  margin-top: 5px;
 }
-.cuestion-input label {
-  float: left;
+
+.texto-input {
+  margin: 5px auto;
 }
