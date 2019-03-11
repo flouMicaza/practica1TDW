@@ -10,9 +10,10 @@
 
 .container {
   background-color: #e3f2fd;
-  margin-top: 5px;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
-.texto-input {
-  margin: 5px auto;
+#un-form {
+  margin-left: 20px;
 }

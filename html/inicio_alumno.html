@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Administrador de cuestiones</title>
-        <meta name="author" content="Florencia Miranda"/>
-        <meta charset="utf-8">
+  <head>
+    <title>Administrador de cuestiones</title>
+    <meta name="author" content="Florencia Miranda" />
+    <meta charset="utf-8" />
 
-        <!-- Importar bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Bienvenido alumno</h1>
+    <!-- Importar bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/inicio-cuestiones.css"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light navbar-expand-lg ">
+      <a class="navbar-brand" href="#">Cuestiones</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">
+              <!-- title hace que apareza un mensaje al pasar el mouse sobre la img-->
+              <img
+                src="../icons/build/svg/sign-out.svg"
+                width="30"
+                height="30"
+                alt="Salir"
+                title="Salir"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- <span class="delete-btn">
+        <a href="login.html" class="btn btn-dark btn-sm">Salir</a>
+      </span> -->
+      <h3>Enunciados</h3>
+
+      <div class="card">
+        <div class="card-body">
+          <a href="pagina_cuestion_alumno.html">¿Que es el software?</a>
         </div>
-    </body>
+      </div>
 
+      <div class="card">
+        <div class="card-body">
+          <a href="pagina_cuestion_alumno.html">¿Que es la recursividad?</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <a href="pagina_cuestion_alumno.html">¿Que es un lenguaje tipado?</a>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
