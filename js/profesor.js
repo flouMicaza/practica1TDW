@@ -2,12 +2,12 @@ function cargar_cuestiones() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
 
   var cuestiones = datos.cuestiones;
-  var container = document.getElementById("container");
+  var main_cuestiones = document.getElementById("cuestiones");
   var cuestion_nueva = document.getElementById("nueva_cuestion");
   console.log(typeof cuestion_nueva);
   for (let cuestion of cuestiones) {
     var nueva_cuestion = crear_cuestion(cuestion);
-    container.insertBefore(nueva_cuestion, cuestion_nueva);
+    main_cuestiones.appendChild(nueva_cuestion);
   }
 }
 
@@ -18,12 +18,11 @@ function crear_cuestion(cuestion) {
 
   var card_body = document.createElement("div");
   card_body.className = "card-body";
-
   var link_cuestion = document.createElement("a");
   link_cuestion.href = "pagina_cuestion.html"; //TODO: cambiar este link!
   var mensaje = document.createTextNode(cuestion.enunciado);
   link_cuestion.appendChild(mensaje);
-
+  link_cuestion.onclick = abrir_cuestion;
   var span_eliminar = document.createElement("span");
   span_eliminar.className = "delete-btn";
   var boton_eliminar = document.createElement("a");
@@ -38,4 +37,13 @@ function crear_cuestion(cuestion) {
   card_div.appendChild(card_body);
 
   return card_div;
+}
+function abrir_cuestion() {
+  //agregar al local storage la cuestion que estoy viendo ahora y cargar la nueva pagina.
+  // al carga la nueva pagina en onload lo que se hara es sacar la info de la cuestion y ahi mostrar la info necesaria.
+  console.log("abrir cuestion!");
+}
+
+function cargar_cuestion() {
+  console.log("se abrio la pagina de la cuestion!");
 }
