@@ -5,14 +5,13 @@ function cargar_cuestiones() {
   var container = document.getElementById("container");
   var cuestion_nueva = document.getElementById("nueva_cuestion");
   console.log(typeof cuestion_nueva);
-  for (cuestion of cuestiones) {
+  for (let cuestion of cuestiones) {
     var nueva_cuestion = crear_cuestion(cuestion);
     container.insertBefore(nueva_cuestion, cuestion_nueva);
   }
 }
 
 function crear_cuestion(cuestion) {
-  console.log("cuestion: ", cuestion.clave);
   var card_div = document.createElement("div");
   card_div.className = "card";
   card_div.id = cuestion.clave;

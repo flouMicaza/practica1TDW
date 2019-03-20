@@ -35,7 +35,7 @@ function validacion() {
 }
 
 function getUsuario(datos, nombre, contrasena) {
-  for (usuario of datos.usuarios) {
+  for (let usuario of datos.usuarios) {
     if (usuario.nombre == nombre && usuario.contrasena == contrasena) {
       return usuario;
     }
