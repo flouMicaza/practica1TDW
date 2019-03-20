@@ -12,16 +12,15 @@
     />
 
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
-    <script src="../js/codigo.js"></script>
+    <script src="../js/login.js"></script>
   </head>
   <body>
     <div class="contenedor">
       <h1>Iniciar sesión</h1>
-      <small>Seleccionar profesor o alumno para acceder a las vistas</small>
       <!-- junbotron es un clase de bootstrap-->
       <div class="jumbotron">
         <form id="login" onsubmit="return validacion();">
-          <div class="form-group">
+          <div class="form-group" id="div_user">
             <label for="user">Usuario</label>
             <input
               type="text"
@@ -30,7 +29,7 @@
               placeholder="Ingresar usuario"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group" id="div_contrasena">
             <label for="contrasena">Password</label>
             <input
               type="password"
@@ -39,11 +38,10 @@
               placeholder="Contraseña"
             />
           </div>
-          <input type="submit" value="Iniciar sesión" />
-          <!-- <button type="submit" class="btn btn-primary">Alumno</button> -->
+          <div id="div_input">
+            <input type="submit" value="Iniciar sesión" />
+          </div>
         </form>
-        <!-- <a href="inicio_profesor.html" class="btn btn-primary">Profesor</a>
-        <a href="inicio_alumno.html" class="btn btn-primary">Alumno</a> -->
       </div>
     </div>
   </body>

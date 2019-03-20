@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Administrador de cuestiones</title>
+    <meta name="author" content="Florencia Miranda" />
+    <meta charset="utf-8" />
+
+    <!-- Importar bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/pagina-cuestion.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light navbar-expand-lg ">
+      <a class="navbar-brand" href="#">Cuestiones</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">
+              <!-- title hace que apareza un mensaje al pasar el mouse sobre la img-->
+              <img
+                src="../icons/build/svg/sign-out.svg"
+                width="30"
+                height="30"
+                alt="Salir"
+                title="Salir"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <form action="./inicio_profesor.html">
+        <div class="d-flex justify-content-between">
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+          <label> ¿Qué es el software? </label>
+          <a href="./inicio_alumno.html" class="close" aria-label="Close">
+            <span>&times;</span>
+          </a>
+        </div>
+      </form>
+
+      <form action="./pagina_cuestion_alumno_pendiente.html">
+        <div class="d-flex justify-content-around">
+          <label>Propuesta de solución </label>
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+          <input
+            type="text"
+            class="form-control "
+            value="la respuesta escrita por el alumno"
+            required
+          />
+
+          <small class="text-right text-info">Pendiente de corrección</small>
+        </div>
+      </form>
+
+      <form action="./inicio_alumno.html">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content">
+            <label>Solución: </label>
+            <p class="text-dark">El software lo es todo</p>
+          </div>
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+          <div>
+            Correcta: <input type="checkbox" name="nombre" value="Valor" />
+            <small class="text-right text-info">Bien!</small>
+          </div>
+        </div>
+      </form>
+
+      <form
+        action="./pagina_cuestion_alumno_pendiente_solucion.html"
+        id="un-form"
+      >
+        <div class="d-flex justify-content-center">
+          <label>Propuesta de razonamiento </label>
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+          <input
+            type="text"
+            class="form-control "
+            placeholder="Razonamiento"
+            required
+          />
+          <button class="btn btn-primary" type="submit">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
