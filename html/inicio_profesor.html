@@ -17,9 +17,10 @@
       type="text/css"
       href="../css/inicio-cuestiones.css"
     />
+    <script src="../js/profesor.js"></script>
   </head>
 
-  <body onload="cargar_cuestiones">
+  <body onload="cargar_cuestiones();">
     <nav class="navbar navbar-light navbar-expand-lg ">
       <a class="navbar-brand" href="#">Cuestiones</a>
       <div class="collapse navbar-collapse justify-content-end">
@@ -40,44 +41,13 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="container">
       <!-- <span class="delete-btn">
         <a href="login.html" class="btn btn-dark btn-sm">Salir</a>
       </span> -->
       <h3>Cuestiones maestro</h3>
 
-      <div class="card">
-        <div class="card-body">
-          <a href="pagina_cuestion.html">¿Que es el software?</a>
-          <span class="delete-btn"
-            ><a href="inicio_profesor.html" class="btn btn-danger"
-              >Eliminar</a
-            ></span
-          >
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <a href="pagina_cuestion.html">¿Que es la recursividad?</a>
-          <span class="delete-btn"
-            ><a href="inicio_profesor.html" class="btn btn-danger"
-              >Eliminar</a
-            ></span
-          >
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <a href="pagina_cuestion.html">¿Que es un lenguaje tipado?</a>
-          <span class="delete-btn">
-            <a href="inicio_profesor.html" class="btn btn-danger">Eliminar</a>
-          </span>
-        </div>
-      </div>
-
-      <div class="card">
+      <div class="card" id="nueva_cuestion">
         <div class="card-body">
           <form action="./inicio_profesor.html" class="cuestion-input">
             <!-- el input tiene required para que obligue a poner algo en la cuestion-->
