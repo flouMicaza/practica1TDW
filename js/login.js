@@ -6,7 +6,6 @@ function validacion() {
   var contrasena = document.getElementById("contrasena").value;
   alert("para: " + nombre + " " + contrasena);
   var usuario = getUsuario(datos, nombre, contrasena);
-  alert(JSON.stringify(getUsuario(datos, nombre, contrasena)));
   alert("el usuario " + usuario);
   if (usuario == null) {
     alert("sin usuario");
@@ -20,15 +19,9 @@ function validacion() {
     var form = document.getElementById("login");
     form.insertBefore(mi_div, form.childNodes[5]);
   } else {
-    alert("con " + JSON.stringify(usuario));
     window.localStorage.setItem("usuarioRegistrado", JSON.stringify(usuario));
     var login = document.getElementById("login");
-    if (usuario.tipo == "maestro") {
-      login.action = "./inicio_profesor.html";
-    } else {
-      login.action = "./inicio_alumno.html";
-    }
-    alert(login.action);
+    login.action = "./inicio.html";
   }
   alert("fin: " + usuario != null);
   return usuario != null;
