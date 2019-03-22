@@ -3,18 +3,22 @@ function cargar_cuestiones() {
   var usuario = JSON.parse(window.localStorage.getItem("usuarioRegistrado"));
   var cuestiones = datos.cuestiones;
   var main_cuestiones = document.getElementById("cuestiones");
+
+  //crear la lista de cuestiones
   for (let cuestion of cuestiones) {
     var nueva_cuestion = crear_cuestion(cuestion, usuario.tipo);
     main_cuestiones.appendChild(nueva_cuestion);
   }
+
+  //si es alumno elimino del dom el elemento para agregar cuestiones
+  if (usuario.tipo == "aprendiz") {
+    var container = document.getElementById("container");
+    var agregar_cuestion = document.getElementById("agregar_cuestion");
+    container.removeChild(agregar_cuestion);
+  }
 }
 
-function crear_cuestion(cuestion, tipo) {
-  var card_div = document.createElement("div");
-  card_div.className = "card";
-
-  var card_body = document.createElement("div");
-  card_body.className = "card-body";
+function crear_link_cuestion(cuestion, tipo) {
   if (tipo == "maestro") {
     var link = "pagina_cuestion_profesor.html";
   } else {
@@ -29,21 +33,37 @@ function crear_cuestion(cuestion, tipo) {
     window.localStorage.setItem("cuestion_actual", JSON.stringify(cuestion));
   };
 
+  return link_cuestion;
+}
+
+function crear_boton_eliminar(cuestion) {
+  var span_eliminar = document.createElement("span");
+  span_eliminar.className = "delete-btn";
+  var boton_eliminar = document.createElement("a");
+  boton_eliminar.id = "eliminar_" + cuestion.clave;
+  boton_eliminar.href = "inicio.html";
+  boton_eliminar.className = "btn btn-danger";
+  boton_eliminar.onclick = eliminar_cuestion;
+  var mensaje_boton = document.createTextNode("Eliminar");
+  boton_eliminar.appendChild(mensaje_boton);
+  span_eliminar.appendChild(boton_eliminar);
+
+  return span_eliminar;
+}
+
+function crear_cuestion(cuestion, tipo) {
+  var card_div = document.createElement("div");
+  card_div.className = "card";
+
+  var card_body = document.createElement("div");
+  card_body.className = "card-body";
+
+  let link_cuestion = crear_link_cuestion(cuestion, tipo);
   card_body.appendChild(link_cuestion);
 
   //esto es solo si es un maestro.
   if (tipo == "maestro") {
-    var span_eliminar = document.createElement("span");
-    span_eliminar.className = "delete-btn";
-    var boton_eliminar = document.createElement("a");
-    boton_eliminar.id = "eliminar_" + cuestion.clave;
-    boton_eliminar.href = "inicio.html";
-    boton_eliminar.className = "btn btn-danger";
-    boton_eliminar.onclick = eliminar_cuestion;
-    var mensaje_boton = document.createTextNode("Eliminar");
-    boton_eliminar.appendChild(mensaje_boton);
-    span_eliminar.appendChild(boton_eliminar);
-
+    var span_eliminar = crear_boton_eliminar(cuestion);
     card_body.appendChild(span_eliminar);
   }
 
