@@ -52,16 +52,18 @@
         </a>
       </div>
 
-      <form action="./inicio_profesor.html">
+      <form
+        action="./pagina_cuestion_profesor.html"
+        onsubmit="return cambio_enunciado()"
+      >
         <div
           class="d-flex justify-content-center align-items-end"
           id="nombre_cuestion"
         >
           <label>Enunciado </label>
-          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-
+          <!--En este lugar ira el input de la cuestion-->
           <button class="btn btn-primary btn-sm" type="submit">
-            Cambiar cuestion
+            Cambiar enunciado
           </button>
         </div>
       </form>
