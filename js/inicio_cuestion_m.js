@@ -4,7 +4,6 @@ function cargar_cuestion() {
     window.localStorage.getItem("cuestion_actual")
   );
   var div_nombre = document.getElementById("nombre_cuestion");
-  console.log(cuestion_actual.enunciado);
   var input_nombre = document.createElement("input");
   input_nombre.type = "text";
   input_nombre.className = "form-control";

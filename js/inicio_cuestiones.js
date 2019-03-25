@@ -95,7 +95,6 @@ function encontrar_cuestion(cuestiones, id) {
 }
 
 function agregar_cuestion() {
-  console.log("agregar cuestion");
   var datos = JSON.parse(window.localStorage.getItem("datos"));
   var nombre = document.getElementById("id_nueva_cuestion");
   var cuestiones = datos.cuestiones;
@@ -108,6 +107,9 @@ function agregar_cuestion() {
   cuestiones.push(nueva_cuestion);
   datos.cuestiones = cuestiones;
   window.localStorage.setItem("datos", JSON.stringify(datos));
-
+  window.localStorage.setItem(
+    "cuestion_actual",
+    JSON.stringify(nueva_cuestion)
+  );
   return true;
 }
