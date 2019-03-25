@@ -49,9 +49,14 @@
       <main id="cuestiones"></main>
       <div class="card" id="agregar_cuestion">
         <div class="card-body">
-          <form action="./inicio.html" class="cuestion-input">
+          <form
+            action="./inicio.html"
+            class="cuestion-input"
+            onsubmit="return agregar_cuestion()"
+          >
             <!-- el input tiene required para que obligue a poner algo en la cuestion-->
             <input
+              id="id_nueva_cuestion"
               type="text"
               class="form-control "
               placeholder="Nueva cuestión"

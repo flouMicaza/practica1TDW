@@ -13,16 +13,17 @@ function cargar_cuestiones() {
   //si es alumno elimino del dom el elemento para agregar cuestiones
   if (usuario.tipo == "aprendiz") {
     var container = document.getElementById("container");
-    var agregar_cuestion = document.getElementById("agregar_cuestion");
-    container.removeChild(agregar_cuestion);
+    var div_agregar_cuestion = document.getElementById("agregar_cuestion");
+    container.removeChild(div_agregar_cuestion);
   }
 }
 
 function crear_link_cuestion(cuestion, tipo) {
+  var link;
   if (tipo == "maestro") {
-    var link = "pagina_cuestion_profesor.html";
+    link = "pagina_cuestion_profesor.html";
   } else {
-    var link = "pagina_cuestion_alumno.html";
+    link = "pagina_cuestion_alumno.html";
   }
   var link_cuestion = document.createElement("a");
   link_cuestion.id = "link_clave" + cuestion.clave;
@@ -77,7 +78,7 @@ function crear_cuestion(cuestion, tipo) {
 function eliminar_cuestion() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
   var id_cuestion = this.id.split("_")[1];
-  nuevas_cuestiones = encontrar_cuestion(datos.cuestiones, id_cuestion);
+  var nuevas_cuestiones = encontrar_cuestion(datos.cuestiones, id_cuestion);
 
   datos.cuestiones = nuevas_cuestiones;
   window.localStorage.setItem("datos", JSON.stringify(datos));
@@ -91,4 +92,22 @@ function encontrar_cuestion(cuestiones, id) {
     }
   }
   return nuevas_cuestiones;
+}
+
+function agregar_cuestion() {
+  console.log("agregar cuestion");
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var nombre = document.getElementById("id_nueva_cuestion");
+  var cuestiones = datos.cuestiones;
+
+  var ultima = cuestiones[cuestiones.length - 1];
+
+  var nueva_clave = "c" + (parseInt(ultima.clave[1]) + 1);
+  var nueva_cuestion = { clave: nueva_clave, enunciado: nombre.value };
+
+  cuestiones.push(nueva_cuestion);
+  datos.cuestiones = cuestiones;
+  window.localStorage.setItem("datos", JSON.stringify(datos));
+
+  return true;
 }
