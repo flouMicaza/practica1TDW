@@ -13,19 +13,19 @@ function cargar() {
         enunciado: "¿Que es el software?",
         soluciones: [
           {
-            clave: "d1",
+            clave: "s1",
             descripcion:
               "El software es la parte lógica de un sistema informático, o sea sin contemplar el hardware.",
             correcta: false
           },
           {
-            clave: "d2",
+            clave: "s2",
             descripcion:
               "El software es la información que el desarrollador se suministra al hardware para posteriormente manipular la información del usuario",
             correcta: true
           },
           {
-            clave: "d3",
+            clave: "s3",
             descripcion: "El software es el conjunto de los programas",
             correcta: false
           }
@@ -36,8 +36,8 @@ function cargar() {
         disponible: false,
         enunciado: "¿Qué es la recursividad?",
         soluciones: [
-          { clave: "d1", descripcion: "es comida", correcta: false },
-          { clave: "d2", descripcion: "es todos los programas", correcta: true }
+          { clave: "s1", descripcion: "es comida", correcta: false },
+          { clave: "s2", descripcion: "es todos los programas", correcta: true }
         ]
       }
     ]
