@@ -9,6 +9,7 @@ function cargar() {
     cuestiones: [
       {
         clave: "c1",
+        activa: true,
         enunciado: "¿Que es el software?",
         soluciones: [
           {
@@ -32,6 +33,7 @@ function cargar() {
       },
       {
         clave: "c2",
+        activa: false,
         enunciado: "¿Qué es la recursividad?",
         soluciones: [
           { clave: "d1", descripcion: "es comida", correcta: false },

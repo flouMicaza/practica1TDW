@@ -3,17 +3,20 @@ function cargar_cuestion() {
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
   );
-  var div_nombre = document.getElementById("nombre_cuestion");
+  var div_nombre = document.getElementById("enunciado");
+
   var input_nombre = document.createElement("input");
   input_nombre.type = "text";
   input_nombre.className = "form-control";
   input_nombre.value = cuestion_actual.enunciado;
   input_nombre.required = true;
   input_nombre.id = "input_nombre";
-
-  div_nombre.insertBefore(input_nombre, div_nombre.childNodes[2]);
+  div_nombre.appendChild(input_nombre);
 }
 
+function cambio_estado() {
+  console.log("se llamo a la funcion");
+}
 //funcion que toma el nuevo enunciado, comprueba que se haya modificado.
 //Si se modificó el enunciado, lo setea en los datos de localstorage y en cuestion_actual.
 function cambio_enunciado() {

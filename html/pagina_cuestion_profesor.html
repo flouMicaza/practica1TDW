@@ -42,8 +42,14 @@
       <div class="d-flex justify-content-between">
         <!-- switch -->
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" />
-          <label class="custom-control-label"> Cuestión disponible</label>
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="activacion_cuestion"
+          />
+          <label class="custom-control-label" for="activacion_cuestion"
+            >Cambiar estado
+          </label>
         </div>
 
         <!-- botón para salir-->
@@ -51,37 +57,41 @@
           <span>&times;</span>
         </a>
       </div>
-
+      <hr />
       <form
         action="./pagina_cuestion_profesor.html"
         onsubmit="return cambio_enunciado()"
       >
-        <div
-          class="d-flex justify-content-center align-items-end"
-          id="nombre_cuestion"
-        >
-          <label>Enunciado </label>
-          <!--En este lugar ira el input de la cuestion-->
-          <button class="btn btn-primary btn-sm" type="submit">
-            Cambiar enunciado
-          </button>
+        <div class="form-row">
+          <div class="col-1"><label for="cuestion">Enunciado</label></div>
+          <div class="col" id="enunciado"></div>
+          <div class="col">
+            <button class="btn btn-primary" type="submit">
+              Cambiar enunciado
+            </button>
+          </div>
         </div>
       </form>
-
+      <br />
       <form action="./inicio_profesor.html" class="texto-input">
-        <div class="d-flex justify-content-center align-items-end">
-          <label>Nueva solución </label>
+        <div class="form-row">
+          <div class="col-auto">
+            <label>Nueva solución </label>
+          </div>
           <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-          <input
-            type="text"
-            class="form-control "
-            placeholder="Nueva solución"
-            required
-          />
-
-          <button class="btn btn-primary btn-sm" type="submit">
-            Añadir solución
-          </button>
+          <div class="col-auto">
+            <input
+              type="text"
+              class="form-control "
+              placeholder="Nueva solución"
+              required
+            />
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary" type="submit">
+              Añadir solución
+            </button>
+          </div>
         </div>
       </form>
     </div>
