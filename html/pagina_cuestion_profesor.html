@@ -38,32 +38,31 @@
     </nav>
 
     <div class="container">
-      <!-- class d-flex justify content between permite poner el switch y el botón para salir en la misma linea-->
-      <div class="d-flex justify-content-between">
-        <!-- switch -->
-        <div class="custom-control custom-switch" id="switch_activar">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="activacion_cuestion"
-          />
-          <label class="custom-control-label" for="activacion_cuestion"
-            >Cambiar estado
-          </label>
-        </div>
-
+      <!-- class d-flex justify content emd permite poner el  botón para salir en el final-->
+      <div class="d-flex justify-content-end">
         <!-- botón para salir-->
         <a href="./inicio.html" class="close" aria-label="Close">
           <span>&times;</span>
         </a>
       </div>
-      <hr />
       <form
         action="./pagina_cuestion_profesor.html"
         onsubmit="return cambio_enunciado()"
       >
         <div class="form-row">
-          <div class="col-1"><label>Enunciado</label></div>
+          <div class="col-auto">
+            <label>Enunciado</label>
+            <div class="custom-control custom-switch" id="switch_activar">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="activacion_cuestion"
+              />
+              <label class="custom-control-label" for="activacion_cuestion"
+                >Disponible
+              </label>
+            </div>
+          </div>
           <div class="col" id="enunciado"></div>
           <div class="col">
             <button class="btn btn-primary" type="submit">
