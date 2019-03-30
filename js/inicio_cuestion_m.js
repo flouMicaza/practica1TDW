@@ -18,7 +18,7 @@ function crear_switch(cuestion_actual) {
   input_switch.className = "custom-control-input";
   input_switch.id = "activacion_cuestion";
   input_switch.onchange = cambio_estado;
-  input_switch.checked = cuestion_actual.activa;
+  input_switch.checked = cuestion_actual.disponible;
   return input_switch;
 }
 function crear_enunciado_cuestion(cuestion_actual) {
@@ -68,7 +68,7 @@ function cambio_estado() {
     cuestion_actual
   );
   window.localStorage.setItem("datos", JSON.stringify(datos));
-  cuestion_actual.activa = !cuestion_actual.activa;
+  cuestion_actual.disponible = !cuestion_actual.disponible;
   window.localStorage.setItem(
     "cuestion_actual",
     JSON.stringify(cuestion_actual)
@@ -93,7 +93,7 @@ function cambiar_estado_cuestion(cuestiones, cuestion_actual) {
   var nuevas_cuestiones = [];
   for (let cuestion of cuestiones) {
     if (cuestion.clave == cuestion_actual.clave) {
-      cuestion.activa = !cuestion.activa;
+      cuestion.disponible = !cuestion.disponible;
     }
     nuevas_cuestiones.push(cuestion);
   }

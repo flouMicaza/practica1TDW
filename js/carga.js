@@ -9,7 +9,7 @@ function cargar() {
     cuestiones: [
       {
         clave: "c1",
-        activa: true,
+        disponible: true,
         enunciado: "¿Que es el software?",
         soluciones: [
           {
@@ -33,7 +33,7 @@ function cargar() {
       },
       {
         clave: "c2",
-        activa: false,
+        disponible: false,
         enunciado: "¿Qué es la recursividad?",
         soluciones: [
           { clave: "d1", descripcion: "es comida", correcta: false },
@@ -47,10 +47,6 @@ function cargar() {
   var x = JSON.parse(window.localStorage.getItem("datos"));
 
   alert(JSON.stringify(getUsuario(x, "m", "m")));
-  alert(JSON.stringify(getUsuario(x, "a", "a")));
-  alert(JSON.stringify(getUsuario(x, "b", "b")));
-  alert(JSON.stringify(getUsuario(x, "c", "c")));
-  alert(JSON.stringify(getUsuario(x, "x", "x")));
 }
 
 function getUsuario(datos, nombre, contrasena) {
