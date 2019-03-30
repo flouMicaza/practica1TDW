@@ -5,18 +5,32 @@ function cargar_cuestion() {
   );
   var div_nombre = document.getElementById("enunciado");
 
+  div_nombre.appendChild(crear_enunciado_cuestion(cuestion_actual));
+
+  var switch_activar = document.getElementById("switch_activar");
+  input_switch = crear_switch(cuestion_actual);
+  switch_activar.insertBefore(input_switch, switch_activar.firstChild);
+}
+
+function crear_switch(cuestion_actual) {
+  var input_switch = document.createElement("input");
+  input_switch.type = "checkbox";
+  input_switch.className = "custom-control-input";
+  input_switch.id = "activacion_cuestion";
+  input_switch.onchange = cambio_estado;
+  input_switch.checked = cuestion_actual.activa;
+  return input_switch;
+}
+function crear_enunciado_cuestion(cuestion_actual) {
   var input_nombre = document.createElement("input");
   input_nombre.type = "text";
   input_nombre.className = "form-control";
   input_nombre.value = cuestion_actual.enunciado;
   input_nombre.required = true;
   input_nombre.id = "input_nombre";
-  div_nombre.appendChild(input_nombre);
+  return input_nombre;
 }
 
-function cambio_estado() {
-  console.log("se llamo a la funcion");
-}
 //funcion que toma el nuevo enunciado, comprueba que se haya modificado.
 //Si se modificó el enunciado, lo setea en los datos de localstorage y en cuestion_actual.
 function cambio_enunciado() {
@@ -33,16 +47,33 @@ function cambio_enunciado() {
       nuevo_enunciado
     );
     datos.cuestiones = cuestiones;
-    console.log("datos", datos);
+
     window.localStorage.setItem("datos", JSON.stringify(datos));
     cuestion_actual.enunciado = nuevo_enunciado;
-    console.log("cuestion_actual", cuestion_actual);
+
     window.localStorage.setItem(
       "cuestion_actual",
       JSON.stringify(cuestion_actual)
     );
   }
-  console.log("nuevo enunciado", cuestion_actual.enunciado);
+}
+
+function cambio_estado() {
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var nueva_cuestion = cambiar_estado_cuestion(
+    datos.cuestiones,
+    cuestion_actual
+  );
+  window.localStorage.setItem("datos", JSON.stringify(datos));
+  cuestion_actual.activa = !cuestion_actual.activa;
+  window.localStorage.setItem(
+    "cuestion_actual",
+    JSON.stringify(cuestion_actual)
+  );
+  console.log(JSON.parse(window.localStorage.getItem("cuestion_actual")));
 }
 
 /*Funcion que busca la cuestion a cambiar y le cambia la clave.
@@ -52,6 +83,17 @@ function cambiar_cuestion(cuestiones, id, nuevo_enunciado) {
   for (let cuestion of cuestiones) {
     if (cuestion.clave == id) {
       cuestion.enunciado = nuevo_enunciado;
+    }
+    nuevas_cuestiones.push(cuestion);
+  }
+  return nuevas_cuestiones;
+}
+
+function cambiar_estado_cuestion(cuestiones, cuestion_actual) {
+  var nuevas_cuestiones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == cuestion_actual.clave) {
+      cuestion.activa = !cuestion.activa;
     }
     nuevas_cuestiones.push(cuestion);
   }
