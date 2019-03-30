@@ -13,16 +13,16 @@ function cargar_cuestion() {
   var soluciones_main = document.getElementById("soluciones");
 
   var label = document.getElementsByClassName("custom-control-label");
-  console.log(label);
+
   for (let solucion of cuestion_actual.soluciones) {
-    var card_solucion = crear_solucion(solucion);
+    var card_solucion = crear_html_solucion(solucion);
     soluciones_main.appendChild(card_solucion);
     var mi_br = document.createElement("br");
     soluciones_main.appendChild(mi_br);
   }
 }
 
-function crear_solucion(solucion) {
+function crear_html_solucion(solucion) {
   //form
   var sol_form = document.createElement("form");
   sol_form.onsubmit = editar_solucion;
@@ -57,6 +57,11 @@ function crear_solucion(solucion) {
   return sol_form;
 }
 
+//TODO crear solución
+
+function crear_solucion() {
+  console.log("crear solucion", this);
+}
 function crear_botones_solucion(solucion) {
   var div_botones = document.createElement("div");
   div_botones.className = "col-auto";
@@ -74,7 +79,6 @@ function crear_input_solucion(solucion) {
   var div_sol = document.createElement("div");
   div_sol.className = "col-7";
   var input_sol = document.createElement("textarea");
-  //input_sol.type = "text";
   input_sol.className = "form-control";
   input_sol.value = solucion.descripcion;
   input_sol.required = true;
@@ -100,12 +104,16 @@ function crear_switch(solucion) {
   label_switch.appendChild(texto);
   label_switch.htmlFor = input_switch.id;
   div_switch.appendChild(label_switch);
-  console.log("label_switch", label_switch);
   return div_switch;
 }
 
+//sacar el id de la solucion.
+//sacar el nuevo texto
+//setear la solucion en un for
+// volver a setear la sol actual y los datos.
+
 function editar_solucion() {
-  console.log("editando solucion");
+  console.log("editando solucion", this);
 }
 function crear_enunciado_cuestion(cuestion_actual) {
   var input_nombre = document.createElement("input");
@@ -160,7 +168,6 @@ function cambio_estado() {
     "cuestion_actual",
     JSON.stringify(cuestion_actual)
   );
-  console.log(JSON.parse(window.localStorage.getItem("cuestion_actual")));
 }
 
 /*Funcion que busca la cuestion a cambiar y le cambia la clave.

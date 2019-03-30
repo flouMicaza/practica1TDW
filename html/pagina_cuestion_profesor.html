@@ -74,6 +74,28 @@
       <br />
 
       <main id="soluciones"></main>
+
+      <form onsubmit="crear_solucion();" class="texto-input">
+        <div class="form-row">
+          <div class="col-auto">
+            <label>Nueva solución </label>
+          </div>
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+
+          <div class="col-7">
+            <textarea
+              class="form-control "
+              placeholder="Ingresar nueva solución"
+              required
+            ></textarea>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary" type="submit">
+              Añadir solución
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
