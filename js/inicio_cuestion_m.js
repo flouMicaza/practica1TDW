@@ -10,12 +10,15 @@ function cargar_cuestion() {
   var switch_activar = document.getElementById("activacion_cuestion");
   switch_activar.checked = cuestion_actual.disponible;
   switch_activar.onchange = cambio_estado;
-
   var soluciones_main = document.getElementById("soluciones");
 
+  var label = document.getElementsByClassName("custom-control-label");
+  console.log(label);
   for (let solucion of cuestion_actual.soluciones) {
     var card_solucion = crear_solucion(solucion);
     soluciones_main.appendChild(card_solucion);
+    var mi_br = document.createElement("br");
+    soluciones_main.appendChild(mi_br);
   }
 }
 
@@ -70,8 +73,8 @@ function crear_botones_solucion(solucion) {
 function crear_input_solucion(solucion) {
   var div_sol = document.createElement("div");
   div_sol.className = "col-7";
-  var input_sol = document.createElement("input");
-  input_sol.type = "text";
+  var input_sol = document.createElement("textarea");
+  //input_sol.type = "text";
   input_sol.className = "form-control";
   input_sol.value = solucion.descripcion;
   input_sol.required = true;
@@ -95,8 +98,9 @@ function crear_switch(solucion) {
   label_switch.className = "custom-control-label";
   var texto = document.createTextNode("Correcta");
   label_switch.appendChild(texto);
-  label_switch.for = input_switch.id;
+  label_switch.htmlFor = input_switch.id;
   div_switch.appendChild(label_switch);
+  console.log("label_switch", label_switch);
   return div_switch;
 }
 
