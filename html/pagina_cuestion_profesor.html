@@ -63,8 +63,8 @@
               </label>
             </div>
           </div>
-          <div class="col" id="enunciado"></div>
-          <div class="col">
+          <div class="col-8" id="enunciado"></div>
+          <div class="col-auto">
             <button class="btn btn-primary" type="submit">
               Cambiar enunciado
             </button>
@@ -76,9 +76,19 @@
         <div class="form-row">
           <div class="col-auto">
             <label>Nueva solución </label>
+            <div class="custom-control custom-switch" id="switch_sol_correcta">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="sol_correcta"
+              />
+              <label class="custom-control-label" for="sol_correcta"
+                >Correcta
+              </label>
+            </div>
           </div>
           <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-          <div class="col-auto">
+          <div class="col-8">
             <input
               type="text"
               class="form-control "
