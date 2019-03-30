@@ -7,20 +7,11 @@ function cargar_cuestion() {
 
   div_nombre.appendChild(crear_enunciado_cuestion(cuestion_actual));
 
-  var switch_activar = document.getElementById("switch_activar");
-  input_switch = crear_switch(cuestion_actual);
-  switch_activar.insertBefore(input_switch, switch_activar.firstChild);
+  var switch_activar = document.getElementById("activacion_cuestion");
+  switch_activar.checked = cuestion_actual.disponible;
+  switch_activar.onchange = cambio_estado;
 }
 
-function crear_switch(cuestion_actual) {
-  var input_switch = document.createElement("input");
-  input_switch.type = "checkbox";
-  input_switch.className = "custom-control-input";
-  input_switch.id = "activacion_cuestion";
-  input_switch.onchange = cambio_estado;
-  input_switch.checked = cuestion_actual.disponible;
-  return input_switch;
-}
 function crear_enunciado_cuestion(cuestion_actual) {
   var input_nombre = document.createElement("input");
   input_nombre.type = "text";
@@ -67,6 +58,7 @@ function cambio_estado() {
     datos.cuestiones,
     cuestion_actual
   );
+  datos.cuestiones = nueva_cuestion;
   window.localStorage.setItem("datos", JSON.stringify(datos));
   cuestion_actual.disponible = !cuestion_actual.disponible;
   window.localStorage.setItem(

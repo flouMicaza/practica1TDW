@@ -42,6 +42,11 @@
       <div class="d-flex justify-content-between">
         <!-- switch -->
         <div class="custom-control custom-switch" id="switch_activar">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="activacion_cuestion"
+          />
           <label class="custom-control-label" for="activacion_cuestion"
             >Cambiar estado
           </label>
@@ -58,7 +63,7 @@
         onsubmit="return cambio_enunciado()"
       >
         <div class="form-row">
-          <div class="col-1"><label for="cuestion">Enunciado</label></div>
+          <div class="col-1"><label>Enunciado</label></div>
           <div class="col" id="enunciado"></div>
           <div class="col">
             <button class="btn btn-primary" type="submit">
