@@ -74,6 +74,7 @@ function crear_switch(solucion) {
   input_switch.id = "switch_" + solucion.clave;
   //input_switch.onchange = cambio_estado;
   input_switch.checked = solucion.correcta;
+  input_switch.onchange = cambio_estado_solucion;
   div_switch.appendChild(input_switch);
 
   var label_switch = document.createElement("label");
@@ -199,6 +200,38 @@ function setear_nueva_solucion(
   return nuevas_cuesitones;
 }
 
+function cambio_estado_solucion() {
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var id_sol = this.id[7] + this.id[8];
+  var nuevas_cuestiones = cambiar_estado_solucion(
+    datos.cuestiones,
+    cuestion_actual,
+    id_sol
+  );
+  datos.cuestiones = nuevas_cuestiones;
+  window.localStorage.setItem("datos", JSON.stringify(datos));
+}
+function cambiar_estado_solucion(cuestiones, cuestion_actual, id_sol) {
+  var nuevas_cuestiones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == cuestion_actual.clave) {
+      for (let solucion of cuestion.soluciones) {
+        if (solucion.clave == id_sol) {
+          solucion.correcta = !solucion.correcta;
+          window.localStorage.setItem(
+            "cuestion_actual",
+            JSON.stringify(cuestion)
+          );
+        }
+      }
+    }
+    nuevas_cuestiones.push(cuestion);
+  }
+  return nuevas_cuestiones;
+}
 //funcion que toma el nuevo enunciado, comprueba que se haya modificado.
 //Si se modificó el enunciado, lo setea en los datos de localstorage y en cuestion_actual.
 function cambio_enunciado() {
