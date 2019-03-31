@@ -19,6 +19,15 @@ function cargar_cuestion() {
     soluciones_main.appendChild(mi_br);
   }
 }
+function crear_enunciado_cuestion(cuestion_actual) {
+  var input_nombre = document.createElement("input");
+  input_nombre.type = "text";
+  input_nombre.className = "form-control";
+  input_nombre.value = cuestion_actual.enunciado;
+  input_nombre.required = true;
+  input_nombre.id = "input_nombre";
+  return input_nombre;
+}
 
 function crear_html_solucion(solucion) {
   //form
@@ -55,6 +64,52 @@ function crear_html_solucion(solucion) {
 
   return sol_form;
 }
+function crear_switch(solucion) {
+  var div_switch = document.createElement("div");
+  div_switch.className = "custom_control custom-switch";
+
+  var input_switch = document.createElement("input");
+  input_switch.type = "checkbox";
+  input_switch.className = "custom-control-input";
+  input_switch.id = "switch_" + solucion.clave;
+  //input_switch.onchange = cambio_estado;
+  input_switch.checked = solucion.correcta;
+  div_switch.appendChild(input_switch);
+
+  var label_switch = document.createElement("label");
+  label_switch.className = "custom-control-label";
+  var texto = document.createTextNode("Correcta");
+  label_switch.appendChild(texto);
+  label_switch.htmlFor = input_switch.id;
+  div_switch.appendChild(label_switch);
+  return div_switch;
+}
+function crear_input_solucion(solucion) {
+  var div_sol = document.createElement("div");
+  div_sol.className = "col-7";
+  var input_sol = document.createElement("textarea");
+  input_sol.className = "form-control";
+  input_sol.value = solucion.descripcion;
+  input_sol.required = true;
+  input_sol.id = "textarea_" + solucion.clave;
+
+  div_sol.appendChild(input_sol);
+  return div_sol;
+}
+
+//TODO ELIMINAR SOLUCION
+function crear_botones_solucion(solucion) {
+  var div_botones = document.createElement("div");
+  div_botones.className = "col-auto";
+
+  var boton_editar = document.createElement("button");
+  boton_editar.className = "btn btn-primary";
+  boton_editar.type = "submit";
+  var texto = document.createTextNode("Editar solución");
+  boton_editar.appendChild(texto);
+  div_botones.appendChild(boton_editar);
+  return div_botones;
+}
 
 function agregar_solucion() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
@@ -78,7 +133,15 @@ function agregar_solucion() {
   window.localStorage.setItem("datos", JSON.stringify(datos));
   return true;
 }
-
+function crear_clave_solucion(cuestion_actual) {
+  var ultima_solucion = cuestion_actual.soluciones[
+    cuestion_actual.soluciones.length - 1
+  ]
+    ? cuestion_actual.soluciones[cuestion_actual.soluciones.length - 1]
+    : { clave: "s0" };
+  var nueva_clave = "s" + (parseInt(ultima_solucion.clave[1]) + 1);
+  return nueva_clave;
+}
 function agregar_sol_a_cuestion(nueva_solucion, cuestion_actual, cuestiones) {
   var nuevas_cuestiones = [];
   for (let cuestion of cuestiones) {
@@ -92,65 +155,6 @@ function agregar_sol_a_cuestion(nueva_solucion, cuestion_actual, cuestiones) {
   }
   return nuevas_cuestiones;
 }
-function crear_clave_solucion(cuestion_actual) {
-  var ultima_solucion = cuestion_actual.soluciones[
-    cuestion_actual.soluciones.length - 1
-  ]
-    ? cuestion_actual.soluciones[cuestion_actual.soluciones.length - 1]
-    : { clave: "s0" };
-  var nueva_clave = "s" + (parseInt(ultima_solucion.clave[1]) + 1);
-  return nueva_clave;
-}
-function crear_botones_solucion(solucion) {
-  var div_botones = document.createElement("div");
-  div_botones.className = "col-auto";
-
-  var boton_editar = document.createElement("button");
-  boton_editar.className = "btn btn-primary";
-  boton_editar.type = "submit";
-  var texto = document.createTextNode("Editar solución");
-  boton_editar.appendChild(texto);
-  div_botones.appendChild(boton_editar);
-  return div_botones;
-}
-
-function crear_input_solucion(solucion) {
-  var div_sol = document.createElement("div");
-  div_sol.className = "col-7";
-  var input_sol = document.createElement("textarea");
-  input_sol.className = "form-control";
-  input_sol.value = solucion.descripcion;
-  input_sol.required = true;
-  input_sol.id = "textarea_" + solucion.clave;
-
-  div_sol.appendChild(input_sol);
-  return div_sol;
-}
-function crear_switch(solucion) {
-  var div_switch = document.createElement("div");
-  div_switch.className = "custom_control custom-switch";
-
-  var input_switch = document.createElement("input");
-  input_switch.type = "checkbox";
-  input_switch.className = "custom-control-input";
-  input_switch.id = "switch_" + solucion.clave;
-  //input_switch.onchange = cambio_estado;
-  input_switch.checked = solucion.correcta;
-  div_switch.appendChild(input_switch);
-
-  var label_switch = document.createElement("label");
-  label_switch.className = "custom-control-label";
-  var texto = document.createTextNode("Correcta");
-  label_switch.appendChild(texto);
-  label_switch.htmlFor = input_switch.id;
-  div_switch.appendChild(label_switch);
-  return div_switch;
-}
-
-//sacar el id de la solucion.
-//sacar el nuevo texto
-//setear la solucion en un for
-// volver a setear la sol actual y los datos.
 
 function editar_solucion() {
   var id_solucion = this.id[5] + this.id[6];
@@ -195,16 +199,6 @@ function setear_nueva_solucion(
   return nuevas_cuesitones;
 }
 
-function crear_enunciado_cuestion(cuestion_actual) {
-  var input_nombre = document.createElement("input");
-  input_nombre.type = "text";
-  input_nombre.className = "form-control";
-  input_nombre.value = cuestion_actual.enunciado;
-  input_nombre.required = true;
-  input_nombre.id = "input_nombre";
-  return input_nombre;
-}
-
 //funcion que toma el nuevo enunciado, comprueba que se haya modificado.
 //Si se modificó el enunciado, lo setea en los datos de localstorage y en cuestion_actual.
 function cambio_enunciado() {
@@ -232,6 +226,19 @@ function cambio_enunciado() {
   }
 }
 
+/*Funcion que busca la cuestion a cambiar y le cambia la clave.
+ Genera un nuevo arreglo de cuestiones con las mismas que habian antes y con la que se modificó */
+function cambiar_cuestion(cuestiones, id, nuevo_enunciado) {
+  var nuevas_cuestiones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == id) {
+      cuestion.enunciado = nuevo_enunciado;
+    }
+    nuevas_cuestiones.push(cuestion);
+  }
+  return nuevas_cuestiones;
+}
+
 function cambio_estado() {
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
@@ -248,19 +255,6 @@ function cambio_estado() {
     "cuestion_actual",
     JSON.stringify(cuestion_actual)
   );
-}
-
-/*Funcion que busca la cuestion a cambiar y le cambia la clave.
- Genera un nuevo arreglo de cuestiones con las mismas que habian antes y con la que se modificó */
-function cambiar_cuestion(cuestiones, id, nuevo_enunciado) {
-  var nuevas_cuestiones = [];
-  for (let cuestion of cuestiones) {
-    if (cuestion.clave == id) {
-      cuestion.enunciado = nuevo_enunciado;
-    }
-    nuevas_cuestiones.push(cuestion);
-  }
-  return nuevas_cuestiones;
 }
 
 function cambiar_estado_cuestion(cuestiones, cuestion_actual) {
