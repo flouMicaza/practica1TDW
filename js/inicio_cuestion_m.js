@@ -24,6 +24,7 @@ function crear_html_solucion(solucion) {
   //form
   var sol_form = document.createElement("form");
   sol_form.onsubmit = editar_solucion;
+  sol_form.id = "form_" + solucion.clave;
 
   //divs interiores
   var div_form = document.createElement("div");
@@ -120,6 +121,7 @@ function crear_input_solucion(solucion) {
   input_sol.className = "form-control";
   input_sol.value = solucion.descripcion;
   input_sol.required = true;
+  input_sol.id = "textarea_" + solucion.clave;
 
   div_sol.appendChild(input_sol);
   return div_sol;
@@ -151,8 +153,48 @@ function crear_switch(solucion) {
 // volver a setear la sol actual y los datos.
 
 function editar_solucion() {
-  console.log("editando solucion", this);
+  var id_solucion = this.id[5] + this.id[6];
+  var enunciado_sol = document.getElementById("textarea_" + id_solucion);
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var cuestiones = datos.cuestiones;
+  var nuevas_cuestiones = setear_nueva_solucion(
+    cuestiones,
+    cuestion_actual,
+    enunciado_sol.value,
+    id_solucion
+  );
+  datos.cuestiones = nuevas_cuestiones;
+  window.localStorage.setItem("datos", JSON.stringify(datos));
+  return true;
 }
+
+function setear_nueva_solucion(
+  cuestiones,
+  cuestion_actual,
+  enunciado_sol,
+  id_solucion
+) {
+  var nuevas_cuesitones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == cuestion_actual.clave) {
+      for (let solucion of cuestion.soluciones) {
+        if (solucion.clave == id_solucion) {
+          solucion.descripcion = enunciado_sol;
+          window.localStorage.setItem(
+            "cuestion_actual",
+            JSON.stringify(cuestion)
+          );
+        }
+      }
+    }
+    nuevas_cuesitones.push(cuestion);
+  }
+  return nuevas_cuesitones;
+}
+
 function crear_enunciado_cuestion(cuestion_actual) {
   var input_nombre = document.createElement("input");
   input_nombre.type = "text";
