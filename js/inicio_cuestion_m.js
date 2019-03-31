@@ -98,7 +98,6 @@ function crear_input_solucion(solucion) {
   return div_sol;
 }
 
-//TODO ELIMINAR SOLUCION
 function crear_botones_solucion(solucion) {
   var div_botones = document.createElement("div");
   div_botones.className = "col-auto";
@@ -110,20 +109,49 @@ function crear_botones_solucion(solucion) {
   boton_editar.appendChild(texto);
   div_botones.appendChild(boton_editar);
 
+  var el_a = document.createElement("a");
+  el_a.href = "../html/pagina_cuestion_profesor.html";
+
   var boton_eliminar = document.createElement("button");
   boton_eliminar.className = "btn btn-danger ";
   boton_eliminar.type = "button";
-  boton_eliminar.style = "{display :block }";
+  boton_eliminar.id = "eliminar_" + solucion.clave;
   var texto2 = document.createTextNode("Eliminar solución");
   boton_eliminar.appendChild(texto2);
   boton_eliminar.onclick = eliminar_solucion;
-  div_botones.appendChild(boton_eliminar);
+  el_a.appendChild(boton_eliminar);
+  div_botones.appendChild(el_a);
   return div_botones;
 }
 
+//TODO ELIMINAR SOLUCION
 function eliminar_solucion() {
-  console.log("eliminar solucion");
+  var id_sol = this.id[9] + this.id[10];
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var cuestiones = datos.cuestiones;
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+
+  var nuevas_cuestiones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == cuestion_actual.clave) {
+      var soluciones_new = [];
+      for (let solucion of cuestion.soluciones) {
+        if (solucion.clave != id_sol) {
+          soluciones_new.push(solucion);
+        }
+      }
+      cuestion.soluciones = soluciones_new;
+      window.localStorage.setItem("cuestion_actual", JSON.stringify(cuestion));
+    }
+    nuevas_cuestiones.push(cuestion);
+  }
+
+  datos.cuestiones = nuevas_cuestiones;
+  window.localStorage.setItem("datos", JSON.stringify(datos));
 }
+
 function agregar_solucion() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
   var nueva_sol = document.getElementById("nueva_solucion");
@@ -194,7 +222,7 @@ function setear_nueva_solucion(
   enunciado_sol,
   id_solucion
 ) {
-  var nuevas_cuesitones = [];
+  var nuevas_cuestiones = [];
   for (let cuestion of cuestiones) {
     if (cuestion.clave == cuestion_actual.clave) {
       for (let solucion of cuestion.soluciones) {
@@ -207,9 +235,9 @@ function setear_nueva_solucion(
         }
       }
     }
-    nuevas_cuesitones.push(cuestion);
+    nuevas_cuestiones.push(cuestion);
   }
-  return nuevas_cuesitones;
+  return nuevas_cuestiones;
 }
 
 function cambio_estado_solucion() {
