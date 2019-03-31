@@ -12,8 +12,6 @@ function cargar_cuestion() {
   switch_activar.onchange = cambio_estado;
   var soluciones_main = document.getElementById("soluciones");
 
-  var label = document.getElementsByClassName("custom-control-label");
-
   for (let solucion of cuestion_actual.soluciones) {
     var card_solucion = crear_html_solucion(solucion);
     soluciones_main.appendChild(card_solucion);
@@ -31,7 +29,7 @@ function crear_html_solucion(solucion) {
   var div_form = document.createElement("div");
   div_form.className = "form-row";
 
-  div_col_label = document.createElement("div");
+  var div_col_label = document.createElement("div");
   div_col_label.className = "col-auto";
 
   //label
@@ -56,8 +54,6 @@ function crear_html_solucion(solucion) {
 
   return sol_form;
 }
-
-//TODO crear solución
 
 function agregar_solucion() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
