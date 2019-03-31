@@ -59,8 +59,50 @@ function crear_html_solucion(solucion) {
 
 //TODO crear solución
 
-function crear_solucion() {
-  console.log("crear solucion", this);
+function agregar_solucion() {
+  var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var nueva_sol = document.getElementById("nueva_solucion");
+  var cuestiones = datos.cuestiones;
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+  var nueva_clave = crear_clave_solucion(cuestion_actual);
+  var nueva_solucion = {
+    clave: nueva_clave,
+    descripcion: nueva_sol.value,
+    correcta: false
+  };
+  var nuevas_cuestiones = agregar_sol_a_cuestion(
+    nueva_solucion,
+    cuestion_actual,
+    cuestiones
+  );
+  datos.cuestiones = nuevas_cuestiones;
+  window.localStorage.setItem("datos", JSON.stringify(datos));
+  return true;
+}
+
+function agregar_sol_a_cuestion(nueva_solucion, cuestion_actual, cuestiones) {
+  var nuevas_cuestiones = [];
+  for (let cuestion of cuestiones) {
+    if (cuestion.clave == cuestion_actual.clave) {
+      cuestion.soluciones.push(nueva_solucion);
+
+      window.localStorage.setItem("cuestion_actual", JSON.stringify(cuestion));
+    }
+
+    nuevas_cuestiones.push(cuestion);
+  }
+  return nuevas_cuestiones;
+}
+function crear_clave_solucion(cuestion_actual) {
+  var ultima_solucion = cuestion_actual.soluciones[
+    cuestion_actual.soluciones.length - 1
+  ]
+    ? cuestion_actual.soluciones[cuestion_actual.soluciones.length - 1]
+    : { clave: "s0" };
+  var nueva_clave = "s" + (parseInt(ultima_solucion.clave[1]) + 1);
+  return nueva_clave;
 }
 function crear_botones_solucion(solucion) {
   var div_botones = document.createElement("div");

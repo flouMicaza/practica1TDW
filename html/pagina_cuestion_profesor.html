@@ -75,7 +75,7 @@
 
       <main id="soluciones"></main>
 
-      <form onsubmit="crear_solucion();" class="texto-input">
+      <form onsubmit="return agregar_solucion();">
         <div class="form-row">
           <div class="col-auto">
             <label>Nueva solución </label>
@@ -87,6 +87,7 @@
               class="form-control "
               placeholder="Ingresar nueva solución"
               required
+              id="nueva_solucion"
             ></textarea>
           </div>
           <div class="col-auto">

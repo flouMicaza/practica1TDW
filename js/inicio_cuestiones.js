@@ -99,13 +99,14 @@ function agregar_cuestion() {
   var nombre = document.getElementById("id_nueva_cuestion");
   var cuestiones = datos.cuestiones;
 
-  var ultima = cuestiones[cuestiones.length - 1];
+  var ultima_cuestion = cuestiones[cuestiones.length - 1];
 
-  var nueva_clave = "c" + (parseInt(ultima.clave[1]) + 1);
+  var nueva_clave = "c" + (parseInt(ultima_cuestion.clave[1]) + 1);
   var nueva_cuestion = {
     clave: nueva_clave,
     disponible: false,
-    enunciado: nombre.value
+    enunciado: nombre.value,
+    soluciones: []
   };
 
   cuestiones.push(nueva_cuestion);
