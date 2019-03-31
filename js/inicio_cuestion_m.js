@@ -109,9 +109,21 @@ function crear_botones_solucion(solucion) {
   var texto = document.createTextNode("Editar solución");
   boton_editar.appendChild(texto);
   div_botones.appendChild(boton_editar);
+
+  var boton_eliminar = document.createElement("button");
+  boton_eliminar.className = "btn btn-danger ";
+  boton_eliminar.type = "button";
+  boton_eliminar.style = "{display :block }";
+  var texto2 = document.createTextNode("Eliminar solución");
+  boton_eliminar.appendChild(texto2);
+  boton_eliminar.onclick = eliminar_solucion;
+  div_botones.appendChild(boton_eliminar);
   return div_botones;
 }
 
+function eliminar_solucion() {
+  console.log("eliminar solucion");
+}
 function agregar_solucion() {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
   var nueva_sol = document.getElementById("nueva_solucion");
