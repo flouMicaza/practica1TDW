@@ -85,7 +85,6 @@ function crear_label_espera_correccion() {
 
 //funcion para carga una nueva solucion suponiendo que las anteriores ya se muestran.
 function cargar_solucion() {
-  console.log("se carga la solucioon");
   var aprendiz = JSON.parse(window.localStorage.getItem("usuarioRegistrado"));
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
@@ -121,7 +120,6 @@ function siguiente_solucion(ultima_sol_respondida, soluciones) {
 }
 
 function crear_html_solucion(solucion) {
-  console.log(solucion, "solucion a mostrars");
   var main_soluciones = document.getElementById("soluciones_main");
 
   var form_solucion = document.createElement("form");
@@ -192,7 +190,6 @@ function corregir_solucion() {
       break;
     }
   }
-  console.log(respuesta_correcta, "respuesta correcta");
   var respuesta_solucion = document.createElement("small");
   respuesta_solucion.className = "text-info";
   respuesta_solucion.id = "label_respuesta_solucion";

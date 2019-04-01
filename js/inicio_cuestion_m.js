@@ -15,18 +15,80 @@ function cargar_cuestion() {
   for (let solucion of cuestion_actual.soluciones) {
     var card_solucion = crear_html_solucion(solucion);
     soluciones_main.appendChild(card_solucion);
-    var mi_br = document.createElement("br");
-    soluciones_main.appendChild(mi_br);
+    var propuestas = get_propuesta(solucion);
+    if (get_propuesta(solucion) != null) {
+      var card_propuesta = crear_html_propuesta(propuestas);
+      soluciones_main.appendChild(card_propuesta);
+    }
+    var mi_hr = document.createElement("hr");
+    soluciones_main.appendChild(mi_hr);
   }
 }
-function crear_enunciado_cuestion(cuestion_actual) {
-  var input_nombre = document.createElement("input");
-  input_nombre.type = "text";
-  input_nombre.className = "form-control";
-  input_nombre.value = cuestion_actual.enunciado;
-  input_nombre.required = true;
-  input_nombre.id = "input_nombre";
-  return input_nombre;
+
+function get_propuesta(solucion) {
+  if (solucion.clave == "s1") {
+    return [
+      {
+        clave_aprendiz: "a",
+        clave_cuestion_asociada: "c1",
+        propuesta: "El software es todos los programas",
+        correcta: null,
+        error: ""
+      }
+    ];
+  }
+  return null;
+}
+function crear_html_propuesta(propuestas) {
+  var div_propuestas = document.createElement("div");
+  for (let propuesta of propuestas) {
+    var div_form = document.createElement("div");
+    div_form.className = "form-row";
+    var div_col_label = document.createElement("div");
+    div_col_label.className = "col-auto";
+
+    //label
+    var label_sol = document.createElement("label");
+    var texto = document.createTextNode("Propuesta: ");
+    label_sol.appendChild(texto);
+    div_col_label.appendChild(label_sol);
+
+    div_form.appendChild(div_col_label);
+    var div_col_p = document.createElement("div");
+    div_col_p.className = "col-7";
+    var label_propuesta = document.createElement("p");
+    label_propuesta.id = "label_propuesta";
+    var texto = document.createTextNode(propuesta.propuesta);
+    label_propuesta.appendChild(texto);
+    div_col_p.appendChild(label_propuesta);
+    div_form.appendChild(div_col_p);
+
+    div_propuestas.appendChild(div_form);
+
+    var div_form_correccion = document.createElement("div");
+    div_form_correccion.className = "form-row";
+    var div_col_check = document.createElement("div");
+    div_col_check.className = "col-auto";
+    var texto_correcto = document.createTextNode("Correcta:");
+    div_col_check.appendChild(texto_correcto);
+    var input_checkbox = document.createElement("input");
+    input_checkbox.type = "checkbox";
+    div_col_check.appendChild(input_checkbox);
+    div_form_correccion.appendChild(div_col_check);
+
+    //label
+    var div_col_correccion = document.createElement("div");
+    div_col_correccion.className = "col-auto";
+
+    var label_correccion = document.createElement("label");
+    var texto_error = document.createTextNode("Error: ");
+    label_correccion.appendChild(texto_error);
+    div_col_correccion.appendChild(label_correccion);
+    div_form_correccion.appendChild(div_col_correccion);
+    div_propuestas.appendChild(div_form_correccion);
+  }
+
+  return div_propuestas;
 }
 
 function crear_html_solucion(solucion) {
@@ -63,6 +125,15 @@ function crear_html_solucion(solucion) {
   sol_form.appendChild(div_form);
 
   return sol_form;
+}
+function crear_enunciado_cuestion(cuestion_actual) {
+  var input_nombre = document.createElement("input");
+  input_nombre.type = "text";
+  input_nombre.className = "form-control";
+  input_nombre.value = cuestion_actual.enunciado;
+  input_nombre.required = true;
+  input_nombre.id = "input_nombre";
+  return input_nombre;
 }
 function crear_switch(solucion) {
   var div_switch = document.createElement("div");
@@ -124,7 +195,6 @@ function crear_botones_solucion(solucion) {
   return div_botones;
 }
 
-//TODO ELIMINAR SOLUCION
 function eliminar_solucion() {
   var id_sol = this.id[9] + this.id[10];
   var datos = JSON.parse(window.localStorage.getItem("datos"));

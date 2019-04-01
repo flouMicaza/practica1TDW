@@ -56,7 +56,19 @@ function cargar() {
         }
       }
     ],
-    propuestas_sol: { a: [], b: [], c: [] }
+    propuestas_sol: {
+      a: [
+        {
+          clave_aprendiz: "a",
+          clave_cuestion_asociada: "c1",
+          propuesta: "solucion_alumno",
+          correcta: null,
+          error: ""
+        }
+      ],
+      b: [],
+      c: []
+    }
   };
 
   window.localStorage.setItem("datos", JSON.stringify(datos));
