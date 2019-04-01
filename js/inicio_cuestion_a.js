@@ -71,7 +71,6 @@ function cargar_solucion() {
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
   );
-  var datos = JSON.parse(window.localStorage.getItem("datos"));
 
   var nombre_aprendiz = aprendiz.nombre;
   var soluciones_aprendiz = cuestion_actual.respuestas_sol[nombre_aprendiz];
@@ -109,6 +108,7 @@ function crear_html_solucion(solucion) {
   var form_solucion = document.createElement("form");
   var div_row_form = document.createElement("div");
   div_row_form.className = "form-row";
+  div_row_form.id = "form_row" + solucion.clave;
 
   var div_col_label = document.createElement("div");
   div_col_label.className = "col-auto";
@@ -128,13 +128,13 @@ function crear_html_solucion(solucion) {
   div_col_p.appendChild(p_sol);
   div_row_form.appendChild(div_col_p);
 
-  div_col_check = document.createElement("div");
+  var div_col_check = document.createElement("div");
   div_col_check.className = "col-auto";
   var texto_correcto = document.createTextNode("Correcta:");
   div_col_check.appendChild(texto_correcto);
   var input_checkbox = document.createElement("input");
   input_checkbox.type = "checkbox";
-  input_checkbox.name = "input_correcta_" + solucion.clave;
+  input_checkbox.id = "input_correcta_" + solucion.clave;
   div_col_check.appendChild(input_checkbox);
 
   div_row_form.appendChild(div_col_check);
@@ -145,6 +145,7 @@ function crear_html_solucion(solucion) {
   button_corregir.className = "btn btn-primary btn-sm";
   button_corregir.onclick = corregir_solucion;
   button_corregir.value = "Corregir";
+  button_corregir.id = "solucion_" + solucion.clave;
 
   div_col_button.appendChild(button_corregir);
   div_row_form.appendChild(div_col_button);
@@ -153,5 +154,34 @@ function crear_html_solucion(solucion) {
 }
 
 function corregir_solucion() {
-  console.log("corregir solucion");
+  var sol_id = this.id[9] + this.id[10];
+  var checkbox_val = document.getElementById("input_correcta_" + sol_id)
+    .checked;
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+
+  var soluciones = cuestion_actual.soluciones;
+  var respuesta_correcta = "";
+  for (let solucion of soluciones) {
+    if (solucion.clave == sol_id) {
+      if (solucion.correcta == checkbox_val) {
+        respuesta_correcta = true;
+      } else {
+        respuesta_correcta = false;
+      }
+      break;
+    }
+  }
+  console.log(respuesta_correcta, "respuesta correcta");
+  var respuesta_solucion = document.createElement("small");
+  respuesta_solucion.className = "text-info";
+  respuesta_solucion.id = "label_respuesta_solucion";
+  var texto_respuesta = respuesta_correcta
+    ? document.createTextNode("Bien!")
+    : document.createTextNode("Mal!");
+  respuesta_solucion.appendChild(texto_respuesta);
+
+  var div_sol = document.getElementById("form_row" + sol_id);
+  div_sol.appendChild(respuesta_solucion);
 }
