@@ -51,21 +51,39 @@
                 <small class="text-right text-info">Pendiente de corrección</small>
             </div>
         </form>
-
+        <hr>
         <form action="./pagina_cuestion_alumno_pendiente_solucion.html" class="texto-input">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex justify-content"><label>Solución: </label>
-                <p class="text-dark"> El software lo es todo </p></div>
+            <div class="form-row">
+                <div class="col-auto"><label>Solución: </label></div>
+                <div class="col-7">
+                    <p class="text-dark"> El software lo es todo </p></div>
                 <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-                <div>   
-                Correcta: <input type="checkbox" name="nombre" value="Valor">
-                <button class="btn btn-primary" type="submit">
+                <div class="col-auto">   
+                Correcta: <input type="checkbox" name="nombre" value="Valor"></div>
+                <div class="col-auto">
+                <button class="btn btn-primary btn-sm" type="submit">
                     Corregir
-                </button>
-            </div>
+                </button></div>
+                
             </div>
         </form>
+        <form action="./pagina_cuestion_alumno_pendiente_solucion.html" class="texto-input">
+            <div class="form-row">
+                <div class="col-auto"><label>Solución: </label></div>
+                <div class="col-7">
+                    <p class="text-dark"> "El software es la parte lógica de un sistema informático, o sea sin contemplar el hardware.",
+ </p>
+                </div>
+                <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+                <div class="col-auto">
+                    Correcta: <input type="checkbox" name="nombre" value="Valor"></div>
+                <div class="col-auto">
+                    <button class="btn btn-primary btn-sm" type="submit">
+                        Corregir
+                    </button></div>
         
+            </div>
+        </form>
 
     </div>
     </div>

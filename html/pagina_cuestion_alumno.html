@@ -13,9 +13,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="../css/pagina-cuestion.css" />
+    <script src="../js/inicio_cuestion_a.js"></script>
   </head>
 
-  <body>
+  <body onload="cargar_cuestion();">
     <nav class="navbar navbar-light navbar-expand-lg ">
       <a class="navbar-brand" href="#">Cuestiones</a>
       <div class="collapse navbar-collapse justify-content-end">
@@ -36,38 +37,45 @@
       </div>
     </nav>
 
-    
     <div class="container">
-      
-        <form action="./inicio_profesor.html" class="texto-input">
-          <div class="d-flex justify-content-between">
-            
-            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-            <label> ¿Qué es el software? </label>
-                <a href="./inicio.html" class="close" aria-label="Close">
-                    <span>&times;</span>
-                </a>
-            
-          </div>
-        </form>
+      <div class="d-flex justify-content-between" id="header_enunciado">
+        <a
+          href="./inicio.html"
+          class="close"
+          aria-label="Close"
+          id="cerrar_cuestion"
+        >
+          <span>&times;</span>
+        </a>
+      </div>
 
-
-        <form action="./pagina_cuestion_alumno_pendiente.html" class="texto-input">
-        <div class="d-flex justify-content-around">
+      <form>
+        <div class="form-row">
+          <div class="col-auto" id="label_solucion">
             <label>Propuesta de solución </label>
-            <!-- el input tiene required para que obligue a poner algo en la cuestion-->
-            <input type="text" class="form-control " placeholder="Nueva solución" required />
-        
-            <button class="btn btn-primary" type="submit">
-              Enviar
-            </button>
-            
           </div>
-        </form>
-      
-    </div>     
-  </div>
-   
+          <!-- el input tiene required para que obligue a poner algo en la cuestion-->
+          <div class="col-7" id="text_propuesta">
+            <textarea
+              class="form-control "
+              placeholder="Nueva solución"
+              required
+              id="propuesta_de_solucion"
+            ></textarea>
+          </div>
+          <div class="col-auto" id="div_boton_enviar">
+            <input
+              type="button"
+              class="btn btn-primary"
+              onclick="return enviar_propuesta();"
+              value="Enviar"
+              id="boton_enviar"
+            />
+          </div>
+        </div>
+      </form>
+      <hr />
+      <main id="soluciones_main"></main>
+    </div>
   </body>
 </html>
-

@@ -29,7 +29,13 @@ function cargar() {
             descripcion: "El software es el conjunto de los programas",
             correcta: false
           }
-        ]
+        ],
+
+        respuestas_sol: {
+          a: [{ clave_solucion: "s1", respuesta: false }],
+          b: [],
+          c: []
+        }
       },
       {
         clave: "c2",
@@ -37,10 +43,20 @@ function cargar() {
         enunciado: "¿Qué es la recursividad?",
         soluciones: [
           { clave: "s1", descripcion: "es comida", correcta: false },
-          { clave: "s2", descripcion: "es todos los programas", correcta: true }
-        ]
+          {
+            clave: "s2",
+            descripcion: "es todos los programas",
+            correcta: true
+          }
+        ],
+        respuestas_sol: {
+          a: [],
+          b: [],
+          c: []
+        }
       }
-    ]
+    ],
+    propuestas_sol: []
   };
 
   window.localStorage.setItem("datos", JSON.stringify(datos));
