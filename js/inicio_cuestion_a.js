@@ -2,12 +2,17 @@ function cargar_cuestion() {
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
   );
+  var aprendiz = JSON.parse(window.localStorage.getItem("usuarioRegistrado"));
+
   var div_enunciado = document.getElementById("header_enunciado");
   var boton_cerrar = document.getElementById("cerrar_cuestion");
   var nombre_cuestion = document.createElement("h3");
   var texto = document.createTextNode(cuestion_actual.enunciado);
   nombre_cuestion.appendChild(texto);
   div_enunciado.insertBefore(nombre_cuestion, boton_cerrar);
+  if (get_propuesta(aprendiz, cuestion_actual) != null) {
+    preparar_soluciones();
+  }
 }
 
 function enviar_propuesta() {
@@ -17,13 +22,13 @@ function enviar_propuesta() {
   var cuestion_actual = JSON.parse(
     window.localStorage.getItem("cuestion_actual")
   );
-  datos.propuesta_sol = {
+  datos.propuestas_sol[aprendiz.nombre].push({
     clave_aprendiz: aprendiz.clave,
-    clave_cuestio_asociada: cuestion_actual.clave,
+    clave_cuestion_asociada: cuestion_actual.clave,
     propuesta: solucion_alumno,
     correcta: null,
     error: ""
-  };
+  });
   window.localStorage.setItem("datos", JSON.stringify(datos));
   preparar_soluciones();
 }
@@ -37,10 +42,24 @@ function preparar_soluciones() {
   cargar_solucion();
 }
 
-function crear_label_propuesta() {
+function get_propuesta(aprendiz, cuestion) {
   var datos = JSON.parse(window.localStorage.getItem("datos"));
+  var propuestas = datos.propuestas_sol;
+  var propuestas_aprendiz = propuestas[aprendiz.nombre];
+  for (let propuesta of propuestas_aprendiz) {
+    if (propuesta.clave_cuestion_asociada == cuestion.clave) {
+      return propuesta.propuesta;
+    }
+  }
+  return null;
+}
 
-  var propuesta_de_solucion = datos.propuesta_sol.propuesta;
+function crear_label_propuesta() {
+  var cuestion_actual = JSON.parse(
+    window.localStorage.getItem("cuestion_actual")
+  );
+  var aprendiz = JSON.parse(window.localStorage.getItem("usuarioRegistrado"));
+  var propuesta_de_solucion = get_propuesta(aprendiz, cuestion_actual);
   var div_texarea_propuesta = document.getElementById("text_propuesta");
   div_texarea_propuesta.removeChild(
     document.getElementById("propuesta_de_solucion")

@@ -56,7 +56,7 @@ function cargar() {
         }
       }
     ],
-    propuestas_sol: []
+    propuestas_sol: { a: [], b: [], c: [] }
   };
 
   window.localStorage.setItem("datos", JSON.stringify(datos));
